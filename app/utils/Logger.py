@@ -8,7 +8,7 @@ from flask import jsonify
 class Logger():
 
     def __set_logger(self):
-        log_directory = 'src/utils/log'
+        log_directory = 'app/utils/log'
         log_filename = 'app.log'
 
         logger = logging.getLogger(__name__)
