@@ -1,21 +1,31 @@
 ## Backend
-### Installation
 
-Use pip3
-
+### Clonar proyecto
 ```bash
-pip3 install -r requirements.txt
+git clone  git@github.com:jmaresm/FlaskAPIProducts.git
+```
+
+### Entrar al directorio del proyecto
+```bash
+cd FlaskAPIProducts/
+```
+
+### Installation
+Instalar dependencias 
+```bash
+python3 -m pip install -r requirements.txt
 ```
 
 
 ## Docker
-### Run container
+### Levantar las BD
 ```bash
-docker-compose up --build
+docker-compose up -d
 ``` 
 
-## Swagger docs
-Open the follow URL into a browser:
+## API documentation
+### Swagger docs
+Introduce la URL en un browser
 ```
 http://127.0.0.1:5001/swagger/
 ```
