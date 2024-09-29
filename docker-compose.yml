@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  flask:
+    container_name: product-api
+    build: .
+    ports:
+      - 5001:5000
+    volumes:
+      - .:/app
+    depends_on:
+      - mysql
+    links:
+      - mysql
+  mysql:
+    image: mysql:latest
+    restart: always
+    container_name: mydb
+    environment:
+      MYSQL_ROOT_PASSWORD: p@ssword1
+      MYSQL_DATABASE: productos
+    ports:
+      - 32000:3306
+    volumes:
+      - ./app/database:/docker-entrypoint-initdb.d
+      # - ./data:/var/lib/mysql

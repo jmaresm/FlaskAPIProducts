@@ -1,0 +1,152 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Flask Productos API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/product/all": {
+            "get": {
+                "description": "Devuelve todos los productos",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/product": {
+            "post": {
+                "description": "Crea un producto nuevo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "access data",
+                        "in": "body",
+                        "description": "JSON data for the api",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/createProduct"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/inventories/product/{product_id}": {
+            "patch": {
+                "description": "Agregar inventario a un producto (ID)",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "product_id",
+                        "in": "path",
+                        "description": "JSON data for the api",
+                        "required": true
+                    },
+                    {
+                        "name": "access data",
+                        "in": "body",
+                        "description": "JSON data for the api",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateStockProduct"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/orders": {
+            "post": {
+                "description": "Colocar una orden",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "access data",
+                        "in": "body",
+                        "description": "JSON data for the api",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/OrderProducts"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "createProduct": {
+            "type": "object",
+            "required": [
+                "product_name",
+                "sku"
+            ],
+            "properties": {
+                "product_name": {
+                    "type": "string"
+                },
+                "sku": {
+                    "type": "string"
+                }
+            }
+        },
+        "UpdateStockProduct": {
+            "type": "object",
+            "required": [
+                "stock"
+            ],
+            "properties": {
+                "stock": {
+                    "type": "integer"
+                }
+            }
+        },
+        "OrderProducts": {
+            "type": "object",
+            "properties": {
+                "orders": {
+                    "type": "array",
+                    "items": {
+                        "minItems": 1,
+                        "type": "object",
+                        "required": [
+                            "sku",
+                            "amount"
+                        ],
+                        "properties": {
+                            "sku": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
